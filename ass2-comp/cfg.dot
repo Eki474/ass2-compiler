@@ -1,0 +1,15 @@
+digraph{
+{15 [label="stmt_"]}->{13 [label="functioncall_"]};
+{13 [label="functioncall_"]}->{1 [label="name_print"]};
+{1 [label="name_print"]}->{12 [label="args_"]};
+{12 [label="args_"]}->{11 [label="binop_+"]};
+{11 [label="binop_+"]}->{2 [label="number_13"]};
+{11 [label="binop_+"]}->{10 [label="binop_*"]};
+{10 [label="binop_*"]}->{8 [label="binop_/"]};
+{8 [label="binop_/"]}->{6 [label="exp_"]};
+{6 [label="exp_"]}->{5 [label="binop_-"]};
+{5 [label="binop_-"]}->{3 [label="number_22"]};
+{5 [label="binop_-"]}->{4 [label="number_11"]};
+{8 [label="binop_/"]}->{7 [label="number_1"]};
+{10 [label="binop_*"]}->{9 [label="number_44"]};
+}

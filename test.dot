@@ -1,0 +1,8 @@
+digraph { 
+block0 [label="t1 <- x + y\nt2 <- t1 = 0\n...", shape="rect"]; 
+block1 [label="...", shape="rect"]; 
+block2 [label="...", shape="rect"]; 
+block0 -> block1 [label="true"]; 
+block1 -> block0; 
+block0 -> block2 [label="false"]; 
+}
