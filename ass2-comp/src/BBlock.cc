@@ -37,14 +37,20 @@ std::string BBlock::assembly_convert()
 
 void BBlock::dumpCFG(std::ofstream& myfile)
 {
+    if(nCounter > 0){
         myfile << name << "[label=\"";
         for(auto i : instructions)
                 myfile << i.dump() << std::endl;
         myfile << "\",shape=\"rect\"];" << std::endl;
-        myfile << name << " -> " << tExit->name << " [label=\"true\"];" << std::endl;
-        myfile << name << " -> " << fExit->name << " [label=\"false\"];" << std::endl;
-        myfile << tExit->dumpCFG(myfile) << std::endl;
-        myfile << fExit->dumpCFG(myfile) << std::endl;
+        if(tExit != NULL)
+            myfile << name << " -> " << tExit->name << " [label=\"true\"];" << std::endl;
+        if(fExit != NULL)
+            myfile << name << " -> " << fExit->name << " [label=\"false\"];" << std::endl;
+        if(tExit != NULL)
+            tExit->dumpCFG(myfile);
+        if(fExit != NULL)
+            fExit->dumpCFG(myfile);
+    }
 }
 
 /* EXAMPLE 

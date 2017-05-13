@@ -72,18 +72,32 @@ void buildTree(Statement* s, Node n)
 	}
 }
 
+void convertThreeAd(Statement* s, BBlock* out)
+{
+    for(auto i : s->getChildren())
+        i->convert(out);
+}
+
 int main(int argc, char **argv)
 {
 	if(argc == 2){
 		yyin = fopen(argv[1], "r"); 
 		yy::parser parser;
 		if(!parser.parse()){
-			
 			fclose(yyin);
 		}else std::cout << "error with lua file" << std::endl; 
 
 		graph = evaluate(root);
 		buildTree(graph, root);
+
+		/*
+			TODO: 
+			buildTree for BBlock and ThreeAd 
+			BBlock function member convertThreeAd(Statement* s)
+			ThreeAd child classes 3Add, 3Minus.......
+			function convertThreeAd in Semantic Tree to obtain the correct ThreeAd type
+		*/
+		convertThreeAd(graph, cfg_tree);
 
 		std::ofstream myfile ("cfg.dot", std::ofstream::out);
 			if (myfile.is_open()){

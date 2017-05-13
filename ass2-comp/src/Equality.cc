@@ -14,7 +14,7 @@ void Equality::Set(Expression* lhs, Expression* rhs)
 std::string Equality::convert(BBlock* out)
 {
     // Write three address instructions to output
-    ThreeAd expr = ThreeAd(name, '=', lhs->convert(out), rhs->convert(out));
+    ThreeAdEquality expr = ThreeAdEquality(name, '=', lhs->convert(out), rhs->convert(out));
     out->instructions.push_back(expr);
     return name;
 }

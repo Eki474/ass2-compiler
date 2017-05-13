@@ -15,3 +15,6 @@ std::list<Statement*> Statement::getChildren()
 {
 	return children;
 }
+
+std::string Statement::convert(BBlock*)
+{}

@@ -14,7 +14,7 @@ void Mult::Set(Expression* lhs, Expression* rhs)
 std::string Mult::convert(BBlock* out)
 {
     // Write three address instructions to output
-    ThreeAd expr = ThreeAd(name, '*', lhs->convert(out), rhs->convert(out));
+    ThreeAdMult expr = ThreeAdMult(name, '*', lhs->convert(out), rhs->convert(out));
     out->instructions.push_back(expr);
     return name;
 }

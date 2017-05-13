@@ -4,6 +4,7 @@
 #include "Expression.h"
 #include "BBlock.h"
 #include <string>
+#include "ThreeAdEquality.h"
 
 class Equality : public Expression
 {

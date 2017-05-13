@@ -7,6 +7,7 @@
 #include "Statement.h"
 #include "BBlock.h"
 #include <string>
+#include "ThreeAdAdd.h"
 
 class Add : public Expression
 {

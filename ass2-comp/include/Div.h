@@ -7,6 +7,7 @@
 #include "Statement.h"
 #include "BBlock.h"
 #include <string>
+#include "ThreeAdDiv.h"
 
 class Div : public Expression
 {

@@ -15,7 +15,5 @@ void Constant::Set(int v)
 std::string Constant::convert(BBlock* out)
 {
     // Write three address instructions to output
-    //ThreeAd expr = ThreeAd(name, ' ', to_string(value), "");
-    //out->instructions.push_back(expr);
     return value;
 }

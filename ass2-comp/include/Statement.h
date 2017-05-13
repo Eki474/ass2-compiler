@@ -4,6 +4,7 @@
 #include "Node.h"
 #include "LuaEmpty.h"
 #include "LuaValue.h"
+#include "BBlock.h"
 #include <list>
 #include <sstream>
 
@@ -24,6 +25,7 @@ public:
 	}
 	void addChildren(Statement* s);
 	std::list<Statement*> getChildren();
+	std::string convert(BBlock*);
 };
 
 #endif

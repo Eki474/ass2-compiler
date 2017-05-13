@@ -14,7 +14,7 @@ void Div::Set(Expression* lhs, Expression* rhs)
 std::string Div::convert(BBlock* out)
 {
     // Write three address instructions to output
-    ThreeAd expr = ThreeAd(name, '/', lhs->convert(out), rhs->convert(out));
+    ThreeAdDiv expr = ThreeAdDiv(name, '/', lhs->convert(out), rhs->convert(out));
     out->instructions.push_back(expr);
     return name;
 }
