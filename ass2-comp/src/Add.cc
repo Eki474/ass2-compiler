@@ -5,9 +5,12 @@ Add::Add(Node r)
 
 void Add::Set()
 {
-    std::cout << Statement::children.size() << std::endl;
-	lhs = Statement::children.front();
-	rhs = Statement::children.back();
+    if(!Statement::children.empty())
+    {
+    	lhs = Statement::children.front();
+    	rhs = Statement::children.back();
+    }else
+        std::cout << "list empty" << std::endl;
     name = "_t" + std::to_string(nCounter++);
     state++;
 }
