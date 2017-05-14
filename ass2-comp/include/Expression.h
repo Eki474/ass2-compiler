@@ -6,6 +6,8 @@
 #include "Statement.h"
 #include "BBlock.h"
 
+#include <iostream>
+
 class Expression : public Statement
 {
 protected:

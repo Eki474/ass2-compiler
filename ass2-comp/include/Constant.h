@@ -20,7 +20,7 @@ class Constant : public Expression
 
         std::string convert(BBlock* out);
 
-        void Set(int v);
+        void Set();
 };
 
 #endif

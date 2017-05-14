@@ -5,15 +5,17 @@
 #include "BBlock.h"
 #include <string>
 #include "ThreeAdEquality.h"
+#include "Statement.h"
 
 class Equality : public Expression
 {
     public: 
-        Expression *lhs, *rhs;
+        //Expression *lhs, *rhs;
+        Statement *lhs, *rhs;
 
         Equality(Node r);
 
-        void Set(Expression* lhs, Expression* rhs);
+        void Set();
 
         std::string convert(BBlock* out);
 };

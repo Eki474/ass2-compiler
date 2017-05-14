@@ -7,6 +7,7 @@
 #include "BBlock.h"
 #include <list>
 #include <sstream>
+#include <string>
 
 class Statement 
 {	
@@ -25,7 +26,14 @@ public:
 	}
 	void addChildren(Statement* s);
 	std::list<Statement*> getChildren();
-	std::string convert(BBlock*);
+	virtual std::string convert(BBlock* out)
+	{
+		std::cout << "Statement" << std::endl;
+		std::cout << children.size() << std::endl;
+		for(auto i : children)
+			i->convert(out);
+		return "";
+	}
 };
 
 #endif

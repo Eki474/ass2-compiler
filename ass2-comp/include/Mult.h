@@ -12,11 +12,12 @@
 class Mult : public Expression
 {
     public: 
-        Expression *lhs, *rhs;
+        //Expression *lhs, *rhs;
+        Statement *lhs, *rhs;
 
         Mult(Node r);
 
-        void Set(Expression* lhs, Expression* rhs);
+        void Set();
 
         std::string convert(BBlock* out);
 };

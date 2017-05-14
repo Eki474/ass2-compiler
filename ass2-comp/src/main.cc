@@ -3,6 +3,7 @@
 #include <sstream>
 #include <fstream>
 #include <list>
+#include <typeinfo>
 #include "../binary.tab.hh"
 
 #ifndef NODE_H
@@ -74,8 +75,7 @@ void buildTree(Statement* s, Node n)
 
 void convertThreeAd(Statement* s, BBlock* out)
 {
-    for(auto i : s->getChildren())
-        i->convert(out);
+    s->convert(out);
 }
 
 int main(int argc, char **argv)
@@ -87,6 +87,7 @@ int main(int argc, char **argv)
 			fclose(yyin);
 		}else std::cout << "error with lua file" << std::endl; 
 
+		//root.dump();
 		graph = evaluate(root);
 		buildTree(graph, root);
 

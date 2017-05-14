@@ -5,15 +5,17 @@ Constant::Constant(Node r)
 : Svalue(new LuaInt(std::stoi(r.value)))
 {}
 
-void Constant::Set(int v) 
+void Constant::Set() 
 {
-    value = "$" + std::to_string(v);
-    name = "[_t" + std::to_string(nCounter++) + "]"; 
+    value = "$" + std::to_string(Svalue->attributeInt);
+    name = "_t" + std::to_string(nCounter++); 
     state++;
 }
 
 std::string Constant::convert(BBlock* out)
 {
+	Set();
+
     // Write three address instructions to output
     return value;
 }
