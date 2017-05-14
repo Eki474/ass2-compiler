@@ -5,9 +5,9 @@ Minus::Minus(Node r)
 
 void Minus::Set()
 {
-	std::cout << children.size() << std::endl;
-	lhs = children.front();
-	rhs = children.back();
+	std::cout << Statement::children.size() << std::endl;
+	lhs = Statement::children.front();
+	rhs = Statement::children.back();
     name = "_t" + std::to_string(nCounter++);
     state++;
 }
