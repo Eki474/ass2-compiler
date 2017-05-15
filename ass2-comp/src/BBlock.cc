@@ -19,7 +19,7 @@ std::string BBlock::assembly_convert()
     std::string rslt = "\""+name+":\\n\\t\"\n";
     for(auto&& i : instructions)
     {
-        rslt += i.assembly();
+        rslt += i->assembly();
     }
     if(tExit == NULL && fExit == NULL)
     {
@@ -40,7 +40,7 @@ void BBlock::dumpCFG(std::ofstream& myfile)
     if(nCounter > 0){
         myfile << name << "[label=\"";
         for(auto i : instructions)
-                myfile << i.dump() << std::endl;
+                myfile << i->dump() << std::endl;
         myfile << "\",shape=\"rect\"];" << std::endl;
         if(tExit != NULL)
             myfile << name << " -> " << tExit->name << " [label=\"true\"];" << std::endl;

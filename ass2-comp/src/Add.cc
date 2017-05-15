@@ -20,7 +20,7 @@ std::string Add::convert(BBlock* out)
 	std::cout << "Add" << std::endl;
 	Set();
     // Write three address instructions to output
-    ThreeAdAdd expr = ThreeAdAdd(name, '+', lhs->convert(out), rhs->convert(out));
-    out->instructions.push_back(expr);
+    //ThreeAdAdd expr = ThreeAdAdd(name, '+', lhs->convert(out), rhs->convert(out));
+    out->instructions.push_back(new ThreeAdAdd(name, '+', lhs->convert(out), rhs->convert(out)));
     return name;
 }

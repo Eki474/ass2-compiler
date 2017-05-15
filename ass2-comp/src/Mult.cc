@@ -16,7 +16,7 @@ std::string Mult::convert(BBlock* out)
 {
 	Set();
     // Write three address instructions to output
-    ThreeAdMult expr = ThreeAdMult(name, '*', lhs->convert(out), rhs->convert(out));
-    out->instructions.push_back(expr);
+    //ThreeAdMult expr = ThreeAdMult(name, '*', lhs->convert(out), rhs->convert(out));
+    out->instructions.push_back(new ThreeAdMult(name, '*', lhs->convert(out), rhs->convert(out)));
     return name;
 }

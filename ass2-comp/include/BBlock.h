@@ -14,7 +14,7 @@ class BBlock
 private:
         static int nCounter;
 public:
-        std::list<ThreeAd> instructions;
+        std::list<ThreeAd*> instructions;
         BBlock *tExit, *fExit;
         std::string name;
 

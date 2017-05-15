@@ -16,7 +16,7 @@ std::string Equality::convert(BBlock* out)
 {
 	Set();
     // Write three address instructions to output
-    ThreeAdEquality expr = ThreeAdEquality(name, '=', lhs->convert(out), rhs->convert(out));
-    out->instructions.push_back(expr);
+    //ThreeAdEquality expr = ThreeAdEquality(name, '=', lhs->convert(out), rhs->convert(out));
+    out->instructions.push_back(new ThreeAdEquality(name, '=', lhs->convert(out), rhs->convert(out)));
     return name;
 }
