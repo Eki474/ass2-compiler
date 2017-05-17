@@ -1,2 +1,4 @@
 digraph{
+blk0[label="function <- _print , _print
+",shape="rect"];
 }

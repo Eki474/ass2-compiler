@@ -14,6 +14,8 @@ class Statement
 protected:
 	std::list<Statement*> children;
 	std::list<std::string> var_list;
+	std::string name;
+	static int nCounter;
 	int state = 0; 
 public:
 	Statement();
@@ -28,8 +30,6 @@ public:
 	std::list<Statement*> getChildren();
 	virtual std::string convert(BBlock* out)
 	{
-		std::cout << "Statement" << std::endl;
-		std::cout << children.size() << std::endl;
 		for(auto i : children)
 			i->convert(out);
 		return "";

@@ -9,19 +9,6 @@ ThreeAd::ThreeAd(std::string name, char op, std::string lhs, std::string rhs) :
         id = counter++;
     }
 
-std::string ThreeAd::assembly()
-{
-    //TODO: to be remove
-    switch(op)
-    {
-        case 'a':
-            return assignment();
-        default: 
-            std::cerr << "error: unknown operation";
-            return "";
-    }
-}
-
 std::string ThreeAd::assignment()
 {
     //assembly a

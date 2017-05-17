@@ -60,6 +60,6 @@
 (==) 							{ return yy::parser::make_DBLEQUALS(yytext); }
 (~=) 							{ return yy::parser::make_DIFF(yytext); }
 [#] 							{ return yy::parser::make_DIESE(yytext); }
-([^\n=<>\+-\/\*"\(\)|\[\]#{}; \t$'\\']*(\\.)*)+ 	{ return yy::parser::make_WORD(yytext); }
+([^\n=<>\+-\/\*"\(\)|\[\]#{}; \%\t$'\\']*(\\.)*)+ 	{ return yy::parser::make_WORD(yytext); }
 <<EOF>> return yy::parser::make_END(); 
 %%

@@ -9,6 +9,11 @@ BBlock::BBlock() :
 {
 }
 
+/*BBlock::BBlock(std::string n) :
+        tExit(NULL), fExit(NULL), name(n)
+{
+}*/
+
 std::string BBlock::assembly_convert()
 {
     //handling the last block here ????? into bblock

@@ -16,7 +16,7 @@ public:
 
     ThreeAd(std::string name, char op, std::string lhs, std::string rhs);
 
-    std::string assembly(); //TODO: make virtual
+    virtual std::string assembly() = 0;
     //TODO: delete this one
     std::string assignment();
 

@@ -3,8 +3,9 @@
 #include <sstream>
 #include <fstream>
 #include <list>
-#include <typeinfo>
 #include "../binary.tab.hh"
+
+#include <memory>
 
 #ifndef NODE_H
 #define NODE_H 
@@ -29,7 +30,7 @@ extern "C" FILE* yyin;
 #include "../include/Variable.h"
 Statement* graph;
 
-BBlock* cfg_tree;
+BBlock* cfg_tree(new BBlock());
 
 void yy::parser::error(std::string const&err)
 {
@@ -42,7 +43,7 @@ Statement* evaluate(Node n)
 		return new Statement(n);
 	if(n.tag == "functioncall")
 		return new FunctionCall(n);
-	if(n.tag == "name")
+	if(n.tag == "function")
 		return new Function(n);
 	if(n.tag == "args")
 		return new Args(n);
@@ -56,7 +57,7 @@ Statement* evaluate(Node n)
 		return new Minus(n);
 	if(n.tag == "number")
 		return new Constant(n);
-	if(n.tag == "var")
+	if(n.tag == "name")
 		return new Variable(n);
 	return new Statement(n);
 }
@@ -75,11 +76,17 @@ void buildTree(Statement* s, Node n)
 
 void convertThreeAd(Statement* s, BBlock* out)
 {
+	//make conditions here ? or in BBlock ?
     s->convert(out);
 }
 
 int main(int argc, char **argv)
 {
+
+//unique pointer example
+    //std::unique_ptr<ThreeAd> test(new ThreeAd("_t2",'-',"4","2"));
+    //std::cout << test->dump() << std::endl;
+
 	if(argc == 2){
 		yyin = fopen(argv[1], "r"); 
 		yy::parser parser;
@@ -98,6 +105,7 @@ int main(int argc, char **argv)
 			ThreeAd child classes 3Add, 3Minus.......
 			function convertThreeAd in Semantic Tree to obtain the correct ThreeAd type
 		*/
+		
 		convertThreeAd(graph, cfg_tree);
 
 		std::ofstream myfile ("cfg.dot", std::ofstream::out);

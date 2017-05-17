@@ -1,11 +1,10 @@
 #include "../include/Variable.h" 
 
-Variable::Variable(Node r)
+Variable::Variable(Node r) : var_name(r.value)
 {}
 
-void Variable::Set(std::string n) 
+void Variable::Set() 
 {
-    var_name = n;
     name = "_t" + std::to_string(nCounter++); 
     state++;
     /* contains */
@@ -23,7 +22,5 @@ void Variable::Set(std::string n)
 std::string Variable::convert(BBlock* out)
 {
     // Write three address instructions to output
-    //ThreeAd expr = ThreeAd(name, ' ', var_name, "");
-    //out->instructions.push_back(expr);
     return "_"+var_name;
 }

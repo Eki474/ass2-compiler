@@ -7,6 +7,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+/*TODO: change pointers by unique_ptr (include <memory>)*/
 
 /* Basic Blocks */
 class BBlock

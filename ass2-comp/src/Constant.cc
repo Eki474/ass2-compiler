@@ -8,7 +8,7 @@ Constant::Constant(Node r)
 void Constant::Set() 
 {
     value = "$" + std::to_string(Svalue->attributeInt);
-    name = "_t" + std::to_string(nCounter++); 
+    name = ""; 
     state++;
 }
 

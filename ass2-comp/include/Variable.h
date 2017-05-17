@@ -10,10 +10,11 @@ class Variable : public Expression
 {
     public: 
         std::string var_name;
+        std::string name;
 
         Variable(Node r);
 
-        void Set(std::string n);
+        void Set();
 
         std::string convert(BBlock* out);
 };

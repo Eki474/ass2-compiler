@@ -9,6 +9,10 @@ class Args : public Statement
 {	
 public:
 	Args(Node r);
+
+	void Set();
+
+    std::string convert(BBlock* out);
 };
 
 #endif

@@ -1,9 +1,11 @@
 #include "../include/Statement.h"
 
+int Statement::nCounter = 0;
+
 Statement::Statement() 
 {}
 
-Statement::Statement(Node r)
+Statement::Statement(Node r) : name("")
 {}
 
 void Statement::addChildren(Statement* s)

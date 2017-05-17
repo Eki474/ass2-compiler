@@ -10,14 +10,15 @@
 
 class Expression : public Statement
 {
-protected:
-        static int nCounter;
 public:
-        std::string name;
 
         Expression();
         Expression(Node r);
-        virtual std::string convert(BBlock*) = 0;
+        virtual std::string convert(BBlock* out)
+        {
+        	std::cout << "Expression passed" << std::endl;
+        	return Statement::children.front()->convert(out);
+        }
 };
 
 #endif
