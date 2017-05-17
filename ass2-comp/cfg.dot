@@ -1,4 +1,24 @@
 digraph{
-blk0[label="function <- _print , _print
+blk0[label="_t4 <- $22 - $11
+_t3 <- _t4 / $1
+_t2 <- _t3 * $44
+_t1 <- $13 + _t2
+call function <- _print , _t1
+_t5 <- _x = $7
+_t8 <- $10 + _x
+_t7 <- _t8 * $2
+_t6 <- _y = _t7
+_t10 <- _y - _x
+_t9 <- _z = _t10
+call function <- _print , _x
+call function <- _print , _y
+call function <- _print , _z
+call function <- _print , $enter a number:
+call function <- _io , $*number
+_t15 <- _n = call function
+_t17 <- _factorial = $1
+_t18 <- _x = $1
+_t20 <- _x * _i
+_t19 <- _x = _t20
 ",shape="rect"];
 }

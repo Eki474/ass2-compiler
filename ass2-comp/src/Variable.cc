@@ -22,5 +22,5 @@ void Variable::Set()
 std::string Variable::convert(BBlock* out)
 {
     // Write three address instructions to output
-    return "_"+var_name;
+    return "_" + var_name;
 }

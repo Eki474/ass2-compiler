@@ -16,7 +16,6 @@ public:
         Expression(Node r);
         virtual std::string convert(BBlock* out)
         {
-        	std::cout << "Expression passed" << std::endl;
         	return Statement::children.front()->convert(out);
         }
 };

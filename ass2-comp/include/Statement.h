@@ -30,8 +30,10 @@ public:
 	std::list<Statement*> getChildren();
 	virtual std::string convert(BBlock* out)
 	{
-		for(auto i : children)
-			i->convert(out);
+		if(!children.empty()){
+			for(auto i : children)
+				i->convert(out);
+		}
 		return "";
 	}
 };

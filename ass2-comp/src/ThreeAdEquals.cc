@@ -1,15 +1,15 @@
-#include "../include/ThreeAdFor.h"
+#include "../include/ThreeAdEquals.h"
 
-ThreeAdFor::ThreeAdFor(std::string name, char op, std::string lhs, std::string rhs) : 
+ThreeAdEquals::ThreeAdEquals(std::string name, char op, std::string lhs, std::string rhs) : 
 						ThreeAd(name, op, lhs, rhs)
     {}
 
 
-std::string ThreeAdFor::assembly()
+std::string ThreeAdEquals::assembly()
 {
-    //assembly FOR
+    //assembly ==
     /*
-    * REDO
+    * TODO
     */
 
     return "\"movq "+lhs+", %%rax\\n\\t\"\n\"movq "+rhs+", %%rbx\\n\\t\"\n\"addq %%rax, %%rbx\\n\\t\"\n\"movq %%rbx, "+name+"\\n\\t\"\n";

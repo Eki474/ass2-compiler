@@ -5,6 +5,8 @@
 #include "Node.h"
 #include "BBlock.h"
 #include <string>
+#include <cstring>
+#include <typeinfo>
 
 class Variable : public Expression
 {

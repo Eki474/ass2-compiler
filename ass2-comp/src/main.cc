@@ -25,9 +25,23 @@ extern "C" FILE* yyin;
 #include "../include/Minus.h"
 #include "../include/Mult.h"
 #include "../include/Div.h"
+#include "../include/Pow.h"
+#include "../include/Modulo.h"
+#include "../include/Concat.h"
+#include "../include/Inf.h"
+#include "../include/EInf.h"
+#include "../include/Sup.h"
+#include "../include/ESup.h"
+#include "../include/Equals.h"
+#include "../include/Diff.h"
+#include "../include/And.h"
+#include "../include/Or.h"
 #include "../include/Constant.h"
 #include "../include/Equality.h"
 #include "../include/Variable.h"
+#include "../include/ConstantString.h"
+#include "../include/ConstantBool.h"
+#include "../include/ConstantNull.h"
 Statement* graph;
 
 BBlock* cfg_tree(new BBlock());
@@ -41,6 +55,12 @@ Statement* evaluate(Node n)
 {
 	if(n.tag == "stmt")
 		return new Statement(n);
+	if(n.tag == "exp" && n.value == "")
+		return new Expression(n);
+	if(n.tag == "exp" && (n.value == "true" || n.value == "false"))
+		return new ConstantBool(n);
+	if(n.tag == "exp" && n.value == "nil")
+		return new ConstantNull(n);
 	if(n.tag == "functioncall")
 		return new FunctionCall(n);
 	if(n.tag == "function")
@@ -55,10 +75,38 @@ Statement* evaluate(Node n)
 		return new Mult(n);
 	if(n.tag == "binop" && n.value == "-")
 		return new Minus(n);
+	if(n.tag == "binop" && n.value == "^")
+		return new Pow(n);
+	if(n.tag == "binop" && n.value == "%%")
+		return new Modulo(n);
+	if(n.tag == "binop" && n.tag == ".")
+		return new Concat(n);
+	if(n.tag == "binop" && n.value == "<")
+		return new Inf(n);
+	if(n.tag == "binop" && n.value == "i")
+		return new EInf(n);
+	if(n.tag == "binop" && n.value == ">")
+		return new Sup(n);
+	if(n.tag == "binop" && n.value == "s")
+		return new ESup(n);
+	if(n.tag == "binop" && n.value == "=")
+		return new Equals(n);
+	if(n.tag == "binop" && n.value == "~")
+		return new Diff(n);
+	if(n.tag == "binop" && n.value == "&")
+		return new And(n);
+	if(n.tag == "binop" && n.value == "|")
+		return new Or(n);
 	if(n.tag == "number")
 		return new Constant(n);
+	if(n.tag == "string")
+		return new ConstantString(n);
 	if(n.tag == "name")
 		return new Variable(n);
+	if(n.tag == "equals")
+		return new Equality(n);
+	if(n.tag == "for")
+		return new For(n);
 	return new Statement(n);
 }
 

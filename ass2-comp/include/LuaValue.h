@@ -8,6 +8,7 @@ class LuaValue
 public:
 	int attributeInt;
 	std::string attributeString;
+	bool attributeBool;
 };
 
 #endif
