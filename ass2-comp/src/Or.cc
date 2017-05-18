@@ -11,10 +11,10 @@ void Or::Set()
     state++;
 }
 
-std::string Or::convert(BBlock* out)
+std::string Or::convert(BBlock** out)
 {
 	Set();
     // Write three address instructions to output
-    out->instructions.push_back(new ThreeAdOr(name, '|', lhs->convert(out), rhs->convert(out)));
+    (*out)->instructions.push_back(new ThreeAdOr(name, '|', lhs->convert(out), rhs->convert(out)));
     return name;
 }

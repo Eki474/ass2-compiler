@@ -11,7 +11,7 @@ void ConstantNull::Set()
     state++;
 }
 
-std::string ConstantNull::convert(BBlock* out)
+std::string ConstantNull::convert(BBlock** out)
 {
 	Set();
 

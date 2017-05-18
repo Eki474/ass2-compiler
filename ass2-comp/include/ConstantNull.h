@@ -18,7 +18,7 @@ class ConstantNull : public Expression
 
         ConstantNull(Node r);
 
-        std::string convert(BBlock* out);
+        std::string convert(BBlock** out);
 
         void Set();
 };

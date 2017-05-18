@@ -51,9 +51,9 @@ void BBlock::dumpCFG(std::ofstream& myfile)
             myfile << name << " -> " << tExit->name << " [label=\"true\"];" << std::endl;
         if(fExit != NULL)
             myfile << name << " -> " << fExit->name << " [label=\"false\"];" << std::endl;
-        if(tExit != NULL)
+        if(tExit != NULL && name != tExit->name)
             tExit->dumpCFG(myfile);
-        if(fExit != NULL)
+        if(fExit != NULL && name != fExit->name)
             fExit->dumpCFG(myfile);
     }
 }

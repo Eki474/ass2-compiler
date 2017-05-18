@@ -19,7 +19,7 @@ class Sup : public Expression
 
         void Set();
 
-        std::string convert(BBlock* out);
+        std::string convert(BBlock** out);
 };
 
 #endif

@@ -144,7 +144,7 @@ stat 				: varlist EQUALS explist 								{ $$ = Node("equals","");
 																			  $$.children.push_back($1); 
 																			  $$.children.push_back($3); 
 																			}
-					| functioncall 											{ $$ = Node("functioncall",""); $$.children.push_back($1); }
+					| functioncall 											{ $$ = $1; }
 					| DO block ENDDING 										{ $$ = Node("do",""); $$.children.push_back($2); }
 					| WHILE exp DO block ENDDING 							{ $$ = Node("while",""); 
 																			  Node d = Node("do",""); 
@@ -167,7 +167,7 @@ stat 				: varlist EQUALS explist 								{ $$ = Node("equals","");
 																			  $$.children.push_back($6);
 																			}
 					| FOR WORD EQUALS exp COMMA exp optexp DO block ENDDING { $$ = Node("for",""); 
-																			  Node n = Node("name",$2); 
+																			  Node n = Node("ind",$2); 
 																			  n.children.push_back($4); 
 																			  n.children.push_back($6); 
 																			  n.children.push_back($7); 
@@ -311,12 +311,15 @@ optexp 				: /* empty */ 										{ $$ = Node("empty",""); }
 					;
 
 prefixexp 			: var 												{ $$ = $1; }
-					| functioncall 										{ $$ = Node("functioncall",""); $$.children.push_back($1); }
+					| functioncall 										{ $$ = $1; }
 					| OPENBRACKET exp CLOSEBRACKET 						{ $$ = $2; }
 					;
 
-functioncall 		: prefixexp args 									{ $$ = $1; $$.children.push_back($2); }
-					| prefixexp DBLPOINTS WORD args 					{ $$ = $1; 
+functioncall 		: prefixexp args 									{ $$ = Node("functioncall",""); 
+																		  $$.children.push_back($1); 
+																		  $$.children.push_back($2); }
+					| prefixexp DBLPOINTS WORD args 					{ $$ = Node("functioncall",""); 
+																		  $$.children.push_back($1); 
 																		  Node m = Node("method", $3); 
 																		  m.children.push_back($4); 
 																		  $$.children.push_back(m); 
@@ -356,7 +359,8 @@ optcommapoint 		: /* empty */ 										{ $$ = Node("empty",""); }
 					| COMMA TREPOINTS 									{ $$ = Node("three_points",""); }
 					;
 
-tableconstructor 	: OPENACC optfieldlist CLOSEACC 					{ $$ = Node("table",""); $$.children.push_back($2); }
+tableconstructor 	: OPENACC optfieldlist CLOSEACC 					{ $$ = Node("table",""); 
+																		  $$.children.push_back($2); }
 					;
 
 fieldlist 			: fieldlistend optfieldlist 						{ $$ = $1; }

@@ -2,6 +2,7 @@
 #define VARIABLE_H
 
 #include "Expression.h"
+#include "Statement.h"
 #include "Node.h"
 #include "BBlock.h"
 #include <string>
@@ -13,12 +14,13 @@ class Variable : public Expression
     public: 
         std::string var_name;
         std::string name;
+        std::string complete_name;
 
         Variable(Node r);
 
         void Set();
 
-        std::string convert(BBlock* out);
+        std::string convert(BBlock** out);
 };
 
 #endif

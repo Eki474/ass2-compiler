@@ -11,10 +11,10 @@ void Pow::Set()
     state++;
 }
 
-std::string Pow::convert(BBlock* out)
+std::string Pow::convert(BBlock** out)
 {
 	Set();
     // Write three address instructions to output
-    out->instructions.push_back(new ThreeAdPow(name, '^', lhs->convert(out), rhs->convert(out)));
+    (*out)->instructions.push_back(new ThreeAdPow(name, '^', lhs->convert(out), rhs->convert(out)));
     return name;
 }

@@ -14,7 +14,7 @@ public:
 
         Expression();
         Expression(Node r);
-        virtual std::string convert(BBlock* out)
+        virtual std::string convert(BBlock** out)
         {
         	return Statement::children.front()->convert(out);
         }

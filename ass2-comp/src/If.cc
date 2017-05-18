@@ -5,18 +5,75 @@ If::If(Node r)
 
 void If::Set()
 {
-	//
-    name = "_t" + std::to_string(nCounter++);
+	if(Statement::children.size() == 3)
+	{
+		Statement** tmp[] = {&cond, &true_branch, &false_branch};
+		int j = 0;
+		for(auto i : Statement::children)
+		{
+			*(tmp[j]) = i;
+			j++;
+		}
+	}else
+	{
+		Statement** tmp[] = {&cond, &true_branch, &elseif_branch, &false_branch};
+		int j = 0;
+		for(auto i : Statement::children)
+		{
+			*(tmp[j]) = i;
+			j++;
+		}
+	}
     state++;
 }
 
-//Example
-//if <- _t1 < $3
-
-std::string If::convert(BBlock* out)
+std::string If::convert(BBlock** out)
 {
 	Set();
     // Write three address instructions to output
-    out->instructions.push_back(new ThreeAdIf("if", '0', "0", rhs->convert(out)));
+    (*out)->instructions.push_back(new ThreeAdIf("if", ',', cond->convert(out), "then"));
+
+	//blocks creation
+    BBlock* true_out = new BBlock();
+    BBlock* false_out = new BBlock();
+    BBlock* elseif_out = new BBlock();
+    BBlock* exit_out = new BBlock();
+
+    //true block setting
+    (*out)->tExit = true_out;
+    //true block filling 
+    true_branch->convert(&true_out);
+    //exit block setting 
+    true_out->tExit = exit_out;
+
+    if(elseif_branch != NULL && false_branch != NULL) //with elseif and else branches
+    {
+    	//elseif block setting
+	    (*out)->fExit = elseif_out;
+	    //exit block setting 
+    	elseif_out->fExit = false_out;
+	    //elseif block filling
+	    elseif_branch->convert(&elseif_out);
+
+        //false block filling
+        false_branch->convert(&false_out);
+        //exit block setting 
+        false_out->tExit = exit_out;
+    }else if(elseif_branch == NULL && false_branch != NULL) //with else or elseif branch
+    {
+    	//false block setting
+        (*out)->fExit = false_out;
+        //false block filling
+        false_branch->convert(&false_out);
+        //exit block setting 
+        false_out->tExit = exit_out;
+    }else if(elseif_branch == NULL && false_branch == NULL) //without elseif and else branches
+    {
+    	//exit block setting 
+    	(*out)->fExit = exit_out;
+    }
+
+    //setting current block
+    (*out) = exit_out;
     return name;
 }

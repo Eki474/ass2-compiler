@@ -5,18 +5,39 @@ For::For(Node r)
 
 void For::Set()
 {
-	//
-    name = "_t" + std::to_string(nCounter++);
+	lhs = Statement::children.front();
+	rhs = Statement::children.back();
     state++;
 }
 
 //Example
-//for <- _i < $3
+//for <- ind , do
 
-std::string For::convert(BBlock* out)
+std::string For::convert(BBlock** out)
 {
 	Set();
     // Write three address instructions to output
-    out->instructions.push_back(new ThreeAdFor("for", '0', "0", rhs->convert(out)));
-    return name;
+    lhs->convert(out);
+    (*out)->instructions.push_back(new ThreeAdFor("for", ',', "cond", "do"));
+
+    //Blocks creation
+    BBlock* true_out = new BBlock();
+    BBlock* exit_out = new BBlock();
+
+    //true block setting
+    (*out)->tExit = true_out;
+
+    //true block filling 
+    lhs->convert(&true_out);
+    rhs->convert(&true_out);
+
+    //loop block setting 
+    true_out->tExit = true_out;
+    //exit block setting 
+    true_out->fExit = exit_out;
+
+    //setting current block
+	(*out) = exit_out;
+
+    return "for";
 }

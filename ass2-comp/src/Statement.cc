@@ -1,6 +1,7 @@
 #include "../include/Statement.h"
 
 int Statement::nCounter = 0;
+std::list<std::string> Statement::var_list;
 
 Statement::Statement() 
 {}

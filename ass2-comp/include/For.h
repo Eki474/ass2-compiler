@@ -12,13 +12,12 @@ class For : public Statement
 {
 public:
 		Statement *lhs, *rhs;
-		char op;
 
         For(Node r);
 
         void Set();
 
-        std::string convert(BBlock* out);
+        std::string convert(BBlock** out);
 
 };
 

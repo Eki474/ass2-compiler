@@ -18,7 +18,7 @@ class Constant : public Expression
 
         Constant(Node r);
 
-        std::string convert(BBlock* out);
+        std::string convert(BBlock** out);
 
         void Set();
 };

@@ -9,9 +9,11 @@ void Args::Set()
     state++;
 }
 
-std::string Args::convert(BBlock* out)
+std::string Args::convert(BBlock** out)
 {
 	Set();
     // Write three address instructions to output
+    if(Statement::children.empty())
+    	return "";
     return Statement::children.front()->convert(out);
 }

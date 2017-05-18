@@ -17,7 +17,7 @@ class ConstantString : public Statement
 
         ConstantString(Node r);
 
-        std::string convert(BBlock* out);
+        std::string convert(BBlock** out);
 
         void Set();
 };

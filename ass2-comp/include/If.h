@@ -11,14 +11,13 @@
 class If : public Statement
 {
 public:
-		Statement *lhs, *rhs;
-		char op;
+		Statement *true_branch, *false_branch, *elseif_branch, *cond;
 
         If(Node r);
 
         void Set();
 
-        std::string convert(BBlock* out);
+        std::string convert(BBlock** out);
 
 };
 

@@ -11,7 +11,7 @@ void Constant::Set()
     state++;
 }
 
-std::string Constant::convert(BBlock* out)
+std::string Constant::convert(BBlock** out)
 {
 	Set();
 

@@ -42,6 +42,22 @@ extern "C" FILE* yyin;
 #include "../include/ConstantString.h"
 #include "../include/ConstantBool.h"
 #include "../include/ConstantNull.h"
+#include "../include/For.h"
+#include "../include/Ind.h"
+#include "../include/If.h"
+#include "../include/ElseIf.h"
+#include "../include/ElseIfList.h"
+#include "../include/Do.h"
+#include "../include/While.h"
+#include "../include/RepeatUntil.h"
+#include "../include/Table.h"
+#include "../include/FieldList.h"
+#include "../include/In.h"
+#include "../include/Neg.h"
+#include "../include/Not.h"
+#include "../include/Length.h"
+#include "../include/NameList.h"
+#include "../include/ExpList.h"
 Statement* graph;
 
 BBlock* cfg_tree(new BBlock());
@@ -97,6 +113,12 @@ Statement* evaluate(Node n)
 		return new And(n);
 	if(n.tag == "binop" && n.value == "|")
 		return new Or(n);
+	if(n.tag == "unop" && n.value == "-")
+		return new Neg(n);
+	if(n.tag == "unop" && n.value == "not")
+		return new Not(n);
+	if(n.tag == "unop" && n.value == "#")
+		return new Length(n);
 	if(n.tag == "number")
 		return new Constant(n);
 	if(n.tag == "string")
@@ -107,6 +129,30 @@ Statement* evaluate(Node n)
 		return new Equality(n);
 	if(n.tag == "for")
 		return new For(n);
+	if(n.tag == "ind")
+		return new Ind(n);
+	if(n.tag == "do")
+		return new Do(n);
+	if(n.tag == "if")
+		return new If(n);
+	if(n.tag == "elseif")
+		return new ElseIf(n);
+	if(n.tag == "elseiflist")
+		return new ElseIfList(n);
+	if(n.tag == "while")
+		return new While(n);
+	if(n.tag == "repeat")
+		return new RepeatUntil(n);
+	if(n.tag == "fieldlist")
+		return new FieldList(n);
+	if(n.tag == "table")
+		return new Table(n);
+	if(n.tag == "in")
+		return new In(n);
+	if(n.tag == "explist")
+		return new ExpList(n);
+	if(n.tag == "namelist")
+		return new NameList(n);
 	return new Statement(n);
 }
 
@@ -116,8 +162,10 @@ void buildTree(Statement* s, Node n)
 	{
 		for(Node i : n.children)
 		{
-			s->addChildren(evaluate(i));
-			buildTree(s->getChildren().back(), i);
+			if(i.tag != "empty"){
+				s->addChildren(evaluate(i));
+				buildTree(s->getChildren().back(), i);
+			}
 		}
 	}
 }
@@ -125,7 +173,7 @@ void buildTree(Statement* s, Node n)
 void convertThreeAd(Statement* s, BBlock* out)
 {
 	//make conditions here ? or in BBlock ?
-    s->convert(out);
+    s->convert(&out);
 }
 
 int main(int argc, char **argv)

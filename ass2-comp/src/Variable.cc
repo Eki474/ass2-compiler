@@ -9,18 +9,24 @@ void Variable::Set()
     state++;
     /* contains */
     bool a = false;
-    for(std::string i : var_list)
+    for(std::string i : Statement::var_list)
     {
         if(i == var_name)
             a = true;
     }
     /* contains */
     if(!a)
-        var_list.push_back(var_name);
+        Statement::var_list.push_back(var_name);
 }
 
-std::string Variable::convert(BBlock* out)
+std::string Variable::convert(BBlock** out)
 {
+    Set();
+    complete_name = var_name;
+    if(!Statement::children.empty())
+    {
+        complete_name += "." + Statement::children.front()->convert(out);
+    }
     // Write three address instructions to output
-    return "_" + var_name;
+    return complete_name;
 }

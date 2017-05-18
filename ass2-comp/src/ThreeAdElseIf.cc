@@ -7,7 +7,7 @@ ThreeAdElseIf::ThreeAdElseIf(std::string name, char op, std::string lhs, std::st
 
 std::string ThreeAdElseIf::assembly()
 {
-    //assembly IF
+    //assembly ELSE IF
     /*
     * REDO
     */

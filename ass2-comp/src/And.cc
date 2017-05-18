@@ -11,10 +11,10 @@ void And::Set()
     state++;
 }
 
-std::string And::convert(BBlock* out)
+std::string And::convert(BBlock** out)
 {
 	Set();
     // Write three address instructions to output
-    out->instructions.push_back(new ThreeAdAnd(name, '&', lhs->convert(out), rhs->convert(out)));
+    (*out)->instructions.push_back(new ThreeAdAnd(name, '&', lhs->convert(out), rhs->convert(out)));
     return name;
 }

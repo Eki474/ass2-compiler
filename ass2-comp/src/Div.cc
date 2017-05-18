@@ -11,10 +11,10 @@ void Div::Set()
     state++;
 }
 
-std::string Div::convert(BBlock* out)
+std::string Div::convert(BBlock** out)
 {
 	Set();
     // Write three address instructions to output
-    out->instructions.push_back(new ThreeAdDiv(name, '/', lhs->convert(out), rhs->convert(out)));
+    (*out)->instructions.push_back(new ThreeAdDiv(name, '/', lhs->convert(out), rhs->convert(out)));
     return name;
 }

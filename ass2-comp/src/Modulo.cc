@@ -11,10 +11,10 @@ void Modulo::Set()
     state++;
 }
 
-std::string Modulo::convert(BBlock* out)
+std::string Modulo::convert(BBlock** out)
 {
 	Set();
     // Write three address instructions to output
-    out->instructions.push_back(new ThreeAdModulo(name, '%', lhs->convert(out), rhs->convert(out)));
+    (*out)->instructions.push_back(new ThreeAdModulo(name, '%', lhs->convert(out), rhs->convert(out)));
     return name;
 }

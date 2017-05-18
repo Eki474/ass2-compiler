@@ -11,10 +11,10 @@ void Inf::Set()
     state++;
 }
 
-std::string Inf::convert(BBlock* out)
+std::string Inf::convert(BBlock** out)
 {
 	Set();
     // Write three address instructions to output
-    out->instructions.push_back(new ThreeAdInf(name, '<', lhs->convert(out), rhs->convert(out)));
+    (*out)->instructions.push_back(new ThreeAdInf(name, '<', lhs->convert(out), rhs->convert(out)));
     return name;
 }

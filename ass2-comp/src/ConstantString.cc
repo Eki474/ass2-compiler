@@ -11,7 +11,7 @@ void ConstantString::Set()
     state++;
 }
 
-std::string ConstantString::convert(BBlock* out)
+std::string ConstantString::convert(BBlock** out)
 {
 	Set();
 

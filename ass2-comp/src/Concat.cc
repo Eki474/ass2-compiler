@@ -11,10 +11,10 @@ void Concat::Set()
     state++;
 }
 
-std::string Concat::convert(BBlock* out)
+std::string Concat::convert(BBlock** out)
 {
 	Set();
     // Write three address instructions to output
-    out->instructions.push_back(new ThreeAdConcat(name, '.', lhs->convert(out), rhs->convert(out)));
+    (*out)->instructions.push_back(new ThreeAdConcat(name, '.', lhs->convert(out), rhs->convert(out)));
     return name;
 }

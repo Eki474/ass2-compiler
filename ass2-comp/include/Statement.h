@@ -13,7 +13,7 @@ class Statement
 {	
 protected:
 	std::list<Statement*> children;
-	std::list<std::string> var_list;
+	static std::list<std::string> var_list;
 	std::string name;
 	static int nCounter;
 	int state = 0; 
@@ -28,11 +28,16 @@ public:
 	}
 	void addChildren(Statement* s);
 	std::list<Statement*> getChildren();
-	virtual std::string convert(BBlock* out)
+	virtual std::string convert(BBlock** out)
 	{
 		if(!children.empty()){
-			for(auto i : children)
-				i->convert(out);
+			if(children.size() == 1)
+				return children.front()->convert(out);
+			else
+			{
+				for(auto i : children)
+					i->convert(out);
+			}
 		}
 		return "";
 	}
