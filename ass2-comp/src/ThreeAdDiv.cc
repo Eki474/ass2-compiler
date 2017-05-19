@@ -7,14 +7,16 @@ ThreeAdDiv::ThreeAdDiv(std::string name, char op, std::string lhs, std::string r
 
 std::string ThreeAdDiv::assembly()
 {
-    //WARNING WRONG ASSEMBLY THIS IS +
-    //assembly +
+    //assembly /
     /*
-    * movq "lhs", %rax;
-    * movq "rhs", %rbx;
-    * addq %rax, %rbx; 
-    * movq %rbx, "name";
+    * movq "lhs", %rax; 
+    * movq "rhs", %rbx; 
+    * idivq %rbx;
+    * movq %rax, "name";
     */
 
-    return "\"movq "+lhs+", %%rax\\n\\t\"\n\"movq "+rhs+", %%rbx\\n\\t\"\n\"addq %%rax, %%rbx\\n\\t\"\n\"movq %%rbx, "+name+"\\n\\t\"\n";
+    return "\"movq "+lhs+", %%rax\\n\\t\"\n"
+            "\"movq "+rhs+", %%rbx\\n\\t\"\n"
+            "\"idivq %%rbx\\n\\t\"\n"
+            "\"movq %%rbx, "+name+"\\n\\t\"\n";
 }

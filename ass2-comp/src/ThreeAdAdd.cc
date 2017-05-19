@@ -15,5 +15,8 @@ std::string ThreeAdAdd::assembly()
     * movq %rbx, "name";
     */
 
-    return "\"movq "+lhs+", %%rax\\n\\t\"\n\"movq "+rhs+", %%rbx\\n\\t\"\n\"addq %%rax, %%rbx\\n\\t\"\n\"movq %%rbx, "+name+"\\n\\t\"\n";
+    return "\"movq "+lhs+", %%rax\\n\\t\"\n"
+            "\"movq "+rhs+", %%rbx\\n\\t\"\n"
+            "\"addq %%rax, %%rbx\\n\\t\"\n"
+            "\"movq %%rbx, "+name+"\\n\\t\"\n";
 }

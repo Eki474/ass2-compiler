@@ -14,6 +14,7 @@ class BBlock
 {
 private:
         static int nCounter;
+        static std::list<std::string> read_blocks;
 public:
         std::list<ThreeAd*> instructions;
         BBlock *tExit, *fExit;
@@ -24,6 +25,8 @@ public:
         std::string assembly_convert();
 
         void dumpCFG(std::ofstream& myfile);
+
+        bool already_read(std::string n);
 };
 
 #endif

@@ -24,6 +24,7 @@ std::string ElseIfList::convert(BBlock** out)
 
     for(auto i : Statement::children)
     {
+        (*true_out)->fExit = exit_out;
         i->convert(true_out);
         (*true_out)->fExit = (*new_out);
         if(i != Statement::children.back())
@@ -33,6 +34,7 @@ std::string ElseIfList::convert(BBlock** out)
         }
     }
     (*true_out)->fExit = exit_out;
+    (*new_out)->tExit = exit_out;
     (*out)->fExit = NULL;
     return name;
 }

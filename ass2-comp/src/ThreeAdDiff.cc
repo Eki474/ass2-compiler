@@ -9,8 +9,15 @@ std::string ThreeAdDiff::assembly()
 {
     //assembly ~=
     /*
-    * TODO
+    * movq "lhs", %rax;
+    * movq "rhs", %rbx;
+    * cmp %rax, %rbx;
+    * movq %rbx, "name";
     */
+    //corresponding jump : jne
 
-    return "\"movq "+lhs+", %%rax\\n\\t\"\n\"movq "+rhs+", %%rbx\\n\\t\"\n\"addq %%rax, %%rbx\\n\\t\"\n\"movq %%rbx, "+name+"\\n\\t\"\n";
+    return "\"movq "+lhs+", %%rax\\n\\t\"\n"
+            "\"movq "+rhs+", %%rbx\\n\\t\"\n"
+            "\"cmp %%rax, %%rbx\\n\\t\"\n"
+            "\"movq %%rbx, "+name+"\\n\\t\"\n";
 }

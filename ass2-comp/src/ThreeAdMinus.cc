@@ -7,14 +7,16 @@ ThreeAdMinus::ThreeAdMinus(std::string name, char op, std::string lhs, std::stri
 
 std::string ThreeAdMinus::assembly()
 {
-    //WARNING TODO THIS IS ASSEMBLY FOR +
-    //assembly +
+    //assembly -
     /*
     * movq "lhs", %rax;
     * movq "rhs", %rbx;
-    * addq %rax, %rbx; 
+    * subq %rax, %rbx; 
     * movq %rbx, "name";
     */
 
-    return "\"movq "+lhs+", %%rax\\n\\t\"\n\"movq "+rhs+", %%rbx\\n\\t\"\n\"addq %%rax, %%rbx\\n\\t\"\n\"movq %%rbx, "+name+"\\n\\t\"\n";
+    return "\"movq "+lhs+", %%rax\\n\\t\"\n"
+            "\"movq "+rhs+", %%rbx\\n\\t\"\n"
+            "\"subq %%rax, %%rbx\\n\\t\"\n"
+            "\"movq %%rbx, "+name+"\\n\\t\"\n";
 }

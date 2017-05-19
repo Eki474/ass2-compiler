@@ -9,8 +9,12 @@ std::string ThreeAdNeg::assembly()
 {
     //assembly NEGATIVE NUMBERS
     /*
-    * TODO
+    * movq "rhs", %rax;
+    * negq %rax; 
+    * movq %rax, "name";
     */
 
-    return "\"movq "+lhs+", %%rax\\n\\t\"\n\"movq "+rhs+", %%rbx\\n\\t\"\n\"addq %%rax, %%rbx\\n\\t\"\n\"movq %%rbx, "+name+"\\n\\t\"\n";
+    return "\"movq "+rhs+", %%rax\\n\\t\"\n"
+    		"\"negq %%rax\\n\\t\"\n"
+    		"\"movq %%rax, "+name+"\\n\\t\"\n";
 }

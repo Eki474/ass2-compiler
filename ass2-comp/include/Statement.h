@@ -13,11 +13,12 @@ class Statement
 {	
 protected:
 	std::list<Statement*> children;
-	static std::list<std::string> var_list;
 	std::string name;
-	static int nCounter;
 	int state = 0; 
 public:
+	static std::list<std::string> var_list;
+	static int nCounter;
+
 	Statement();
 	Statement(Node r);
 	virtual LuaValue* consume()

@@ -16,4 +16,4 @@ binary.tab.cc: binary.yy
 lex.yy.c: binary.ll binary.tab.cc 
 	flex binary.ll
 clean:
-	rm -f binary.tab.* lex.yy.c* comp 
+	rm -f binary.tab.* lex.yy.c* comp target.cc

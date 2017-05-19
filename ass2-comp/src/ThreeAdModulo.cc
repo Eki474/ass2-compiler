@@ -7,10 +7,16 @@ ThreeAdModulo::ThreeAdModulo(std::string name, char op, std::string lhs, std::st
 
 std::string ThreeAdModulo::assembly()
 {
-    //assembly % modulo
+    //assembly %
     /*
-    * TODO
+    * movq "lhs", %rax; 
+    * movq "rhs", %rbx; 
+    * idivq %rbx;
+    * movq %rdx, "name";
     */
 
-    return "\"movq "+lhs+", %%rax\\n\\t\"\n\"movq "+rhs+", %%rbx\\n\\t\"\n\"addq %%rax, %%rbx\\n\\t\"\n\"movq %%rbx, "+name+"\\n\\t\"\n";
+    return "\"movq "+lhs+", %%rax\\n\\t\"\n"
+            "\"movq "+rhs+", %%rbx\\n\\t\"\n"
+            "\"idivq %%rbx\\n\\t\"\n"
+            "\"movq %%rdx, "+name+"\\n\\t\"\n";
 }

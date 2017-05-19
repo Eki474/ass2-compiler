@@ -9,16 +9,6 @@ ThreeAd::ThreeAd(std::string name, char op, std::string lhs, std::string rhs) :
         id = counter++;
     }
 
-std::string ThreeAd::assignment()
-{
-    //assembly a
-    /*
-    * movq "name", "lhs";
-    */
-
-    return "\"movq "+name+", "+lhs+"\\n\\t\"";
-}
-
 std::string ThreeAd::dump()
 {
         return name + " <- " + lhs + " " + op + " " + rhs;

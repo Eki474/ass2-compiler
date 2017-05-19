@@ -22,19 +22,23 @@ std::string For::convert(BBlock** out)
 
     //Blocks creation
     BBlock* true_out = new BBlock();
-    BBlock* exit_out = new BBlock();
+    BBlock* exit_out;
+    if((*out)->tExit == NULL)
+        exit_out = new BBlock();
+    else 
+        exit_out = (*out)->tExit;
 
     //true block setting
     (*out)->tExit = true_out;
-
-    //true block filling 
-    lhs->convert(&true_out);
-    rhs->convert(&true_out);
 
     //loop block setting 
     true_out->tExit = true_out;
     //exit block setting 
     true_out->fExit = exit_out;
+
+    //true block filling 
+    lhs->convert(&true_out);
+    rhs->convert(&true_out);
 
     //setting current block
 	(*out) = exit_out;

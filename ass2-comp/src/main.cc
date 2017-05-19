@@ -172,17 +172,11 @@ void buildTree(Statement* s, Node n)
 
 void convertThreeAd(Statement* s, BBlock* out)
 {
-	//make conditions here ? or in BBlock ?
     s->convert(&out);
 }
 
 int main(int argc, char **argv)
 {
-
-//unique pointer example
-    //std::unique_ptr<ThreeAd> test(new ThreeAd("_t2",'-',"4","2"));
-    //std::cout << test->dump() << std::endl;
-
 	if(argc == 2){
 		yyin = fopen(argv[1], "r"); 
 		yy::parser parser;
@@ -190,27 +184,40 @@ int main(int argc, char **argv)
 			fclose(yyin);
 		}else std::cout << "error with lua file" << std::endl; 
 
-		//root.dump();
 		graph = evaluate(root);
 		buildTree(graph, root);
-
-		/*
-			TODO: 
-			buildTree for BBlock and ThreeAd 
-			BBlock function member convertThreeAd(Statement* s)
-			ThreeAd child classes 3Add, 3Minus.......
-			function convertThreeAd in Semantic Tree to obtain the correct ThreeAd type
-		*/
-		
 		convertThreeAd(graph, cfg_tree);
 
 		std::ofstream myfile ("cfg.dot", std::ofstream::out);
-			if (myfile.is_open()){
-				myfile << "digraph{\n";
-				cfg_tree->dumpCFG(myfile);
-				myfile << "}";
-				myfile.close();
-			}else std::cout << "error with parsing output file" << std::endl;
+		if (myfile.is_open()){
+			myfile << "digraph{\n";
+			cfg_tree->dumpCFG(myfile);
+			myfile << "}";
+			myfile.close();
+		}else std::cout << "error with parsing output file" << std::endl;
+
+		std::ofstream target_file ("target.cc", std::ofstream::out);
+		if (target_file.is_open()){
+			target_file << "int main() {" << std::endl;
+			target_file << "long " << std::endl;
+			for(auto i : Statement::var_list)
+				target_file << i << "=0, ";
+			for(int j = 0; j<Statement::nCounter; j++)
+				target_file << "_t" << j << "=0, ";
+			target_file << "_t" << Statement::nCounter << "=0;" << std::endl;
+			target_file << "asm(" << std::endl;
+			target_file << cfg_tree->assembly_convert();
+			target_file << ": ";
+			for(auto i : Statement::var_list)
+				target_file << "[" << i << "] \"=g\" (" << i << ")," << std::endl;
+			for(int j = 0; j<Statement::nCounter; j++)
+				target_file << "[_t" << j << "] \"=g\" (_t" << j << ")," << std::endl;
+			target_file << "[_t" << Statement::nCounter << "] \"=g\" (_t" << Statement::nCounter << ")" << std::endl;
+			//target_file << "endpoint:";
+			target_file << ");" << std::endl;
+			target_file << "}" << std::endl;
+			target_file.close();
+		}else std::cout << "error with compiling output file" << std::endl;
 	}
 	return 0;
 }

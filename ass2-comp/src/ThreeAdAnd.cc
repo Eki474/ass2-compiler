@@ -9,8 +9,14 @@ std::string ThreeAdAnd::assembly()
 {
     //assembly &
     /*
-    * TODO
+    * movq "lhs", %rax;
+    * movq "rhs", %rbx;
+    * andq %rax, %rbx; 
+    * movq %rbx, "name";
     */
 
-    return "\"movq "+lhs+", %%rax\\n\\t\"\n\"movq "+rhs+", %%rbx\\n\\t\"\n\"addq %%rax, %%rbx\\n\\t\"\n\"movq %%rbx, "+name+"\\n\\t\"\n";
+    return "\"movq "+lhs+", %%rax\\n\\t\"\n"
+            "\"movq "+rhs+", %%rbx\\n\\t\"\n"
+            "\"andq %%rax, %%rbx\\n\\t\"\n"
+            "\"movq %%rbx, "+name+"\\n\\t\"\n";
 }
