@@ -1,3 +1,5 @@
+#include <string>
+
 #ifndef FIELDLIST_H
 #define FIELDLIST_H
 
@@ -5,7 +7,6 @@
 #include "Node.h"
 #include "BBlock.h"
 #include "ThreeAdTable.h"
-#include <string>
 
 class FieldList : public Expression
 {

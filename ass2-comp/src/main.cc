@@ -45,8 +45,6 @@ extern "C" FILE* yyin;
 #include "../include/For.h"
 #include "../include/Ind.h"
 #include "../include/If.h"
-#include "../include/ElseIf.h"
-#include "../include/ElseIfList.h"
 #include "../include/Do.h"
 #include "../include/While.h"
 #include "../include/RepeatUntil.h"
@@ -135,10 +133,6 @@ Statement* evaluate(Node n)
 		return new Do(n);
 	if(n.tag == "if")
 		return new If(n);
-	if(n.tag == "elseif")
-		return new ElseIf(n);
-	if(n.tag == "elseiflist")
-		return new ElseIfList(n);
 	if(n.tag == "while")
 		return new While(n);
 	if(n.tag == "repeat")

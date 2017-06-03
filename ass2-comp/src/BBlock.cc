@@ -4,16 +4,12 @@
 
 int BBlock::nCounter = 0;
 std::list<std::string> BBlock::read_blocks;
+std::list<std::string> BBlock::compiled_blocks;
 
 BBlock::BBlock() :
         tExit(NULL), fExit(NULL), name("blk" + std::to_string(nCounter++))
 {
 }
-
-/*BBlock::BBlock(std::string n) :
-        tExit(NULL), fExit(NULL), name(n)
-{
-}*/
 
 std::string BBlock::assembly_convert()
 {
@@ -28,43 +24,48 @@ std::string BBlock::assembly_convert()
     {
         rslt += i->assembly();
     }
-    if(tExit == NULL && fExit == NULL)
-    {
-        //rslt += "\"jmp endpoint\\n\\t\"\n";
-    }else if(fExit == NULL){
+    if(tExit != NULL && fExit == NULL)
         rslt += "\"jmp"+tExit->name+"\\n\\t\"\n";
-        tExit->assembly_convert();
-    }else 
+    if(tExit != NULL && fExit != NULL)
     {
         if(instructions.back()->op == '?')
         {
             rslt += "\"je "+tExit->name+"\\n\\t\"\n"; //==
-            rslt += "\"jmp "+fExit->name+"\\n\\t\"\n";
+            if(fExit->instructions.size() > 0)
+                rslt += "\"jmp "+fExit->name+"\\n\\t\"\n";
         }else if(instructions.back()->op == '~')
         {
             rslt += "\"jne "+tExit->name+"\\n\\t\"\n"; //=~
-            rslt += "\"jmp "+fExit->name+"\\n\\t\"\n";
+            if(fExit->instructions.size() > 0)
+                rslt += "\"jmp "+fExit->name+"\\n\\t\"\n";
         }else if(instructions.back()->op == 'i')
         {
             rslt += "\"jg "+tExit->name+"\\n\\t\"\n"; //<=
-            rslt += "\"jmp "+fExit->name+"\\n\\t\"\n";
+            if(fExit->instructions.size() > 0)
+                rslt += "\"jmp "+fExit->name+"\\n\\t\"\n";
         }else if(instructions.back()->op == 's')
         {
             rslt += "\"jge "+tExit->name+"\\n\\t\"\n"; //>=
-            rslt += "\"jmp "+fExit->name+"\\n\\t\"\n";
+            if(fExit->instructions.size() > 0)
+                rslt += "\"jmp "+fExit->name+"\\n\\t\"\n";
         }else if(instructions.back()->op == '<')
         {
             rslt += "\"jge "+tExit->name+"\\n\\t\"\n"; //<
-            rslt += "\"jmp "+fExit->name+"\\n\\t\"\n";
+            if(fExit->instructions.size() > 0)
+                rslt += "\"jmp "+fExit->name+"\\n\\t\"\n";
         }else if(instructions.back()->op == '>')
         {
             rslt += "\"je "+tExit->name+"\\n\\t\"\n"; //>
-            rslt += "\"jmp "+fExit->name+"\\n\\t\"\n";
+            if(fExit->instructions.size() > 0)
+                rslt += "\"jmp "+fExit->name+"\\n\\t\"\n";
         }
-        tExit->assembly_convert();
-        fExit->assembly_convert();
         //TODO same but for logic operators
     }
+    compiled_blocks.push_back(name);
+    if(tExit != NULL && !already_compiled(tExit->name) && tExit->instructions.size() > 0)
+        rslt += tExit->assembly_convert();
+    if(fExit != NULL && !already_compiled(fExit->name) && fExit->instructions.size() > 0)
+        rslt += fExit->assembly_convert();
     return rslt;
 }
 
@@ -75,14 +76,14 @@ void BBlock::dumpCFG(std::ofstream& myfile)
         for(auto i : instructions)
             myfile << i->dump() << std::endl;
         myfile << "\",shape=\"rect\"];" << std::endl;
-        if(tExit != NULL)
+        if(tExit != NULL && tExit->instructions.size() > 0)
             myfile << name << " -> " << tExit->name << " [label=\"true\"];" << std::endl;
-        if(fExit != NULL)
+        if(fExit != NULL && fExit->instructions.size() > 0)
             myfile << name << " -> " << fExit->name << " [label=\"false\"];" << std::endl;
         read_blocks.push_back(name);
-        if(tExit != NULL && !already_read(tExit->name))
+        if(tExit != NULL && !already_read(tExit->name) && tExit->instructions.size() > 0)
             tExit->dumpCFG(myfile);
-        if(fExit != NULL && !already_read(fExit->name))
+        if(fExit != NULL && !already_read(fExit->name) && fExit->instructions.size() > 0)
             fExit->dumpCFG(myfile);
     }
 }
@@ -105,6 +106,19 @@ bool BBlock::already_read(std::string n)
     if(read_blocks.size() > 0)
     {
         for(auto i : read_blocks)
+        {
+            if(i.compare(n) == 0)
+                return true;
+        }
+    }
+    return false;
+}
+
+bool BBlock::already_compiled(std::string n)
+{
+    if(compiled_blocks.size() > 0)
+    {
+        for(auto i : compiled_blocks)
         {
             if(i.compare(n) == 0)
                 return true;

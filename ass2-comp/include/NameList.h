@@ -1,3 +1,5 @@
+#include <string>
+
 #ifndef NAMELIST_H
 #define NAMELIST_H
 
@@ -5,7 +7,6 @@
 #include "Node.h"
 #include "BBlock.h"
 #include "ThreeAdNameList.h"
-#include <string>
 
 class NameList : public Expression
 {

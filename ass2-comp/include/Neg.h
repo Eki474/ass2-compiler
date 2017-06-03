@@ -1,12 +1,13 @@
+#include <list>
+#include <string>
+
 #ifndef NEG_H
 #define NEG_H
 
 #include "Expression.h"
 #include "Node.h"
-#include <list>
 #include "Statement.h"
 #include "BBlock.h"
-#include <string>
 #include "ThreeAdNeg.h"
 
 class Neg : public Expression

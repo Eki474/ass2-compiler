@@ -1,12 +1,12 @@
+#include <list>
+#include <string>
+
 #ifndef REPEATUNTIL_H
 #define REPEATUNTIL_H
 
 #include "Node.h"
-#include <list>
 #include "Statement.h"
 #include "BBlock.h"
-#include <string>
-#include "ThreeAdRepeat.h"
 
 class RepeatUntil : public Statement
 {

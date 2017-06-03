@@ -1,8 +1,9 @@
+#include <iostream>
+
 #ifndef LUABOOL_H
 #define LUABOOL_H
 
 #include "LuaValue.h"
-#include <iostream>
 
 class LuaBool : public LuaValue
 {

@@ -16,8 +16,6 @@ void RepeatUntil::Set()
 std::string RepeatUntil::convert(BBlock** out)
 {
 	Set();
-    // Write three address instructions to output
-    (*out)->instructions.push_back(new ThreeAdRepeat("repeat", ',', lhs->convert(out), "do"));
 
     //Blocks creation
     BBlock* true_out = new BBlock();

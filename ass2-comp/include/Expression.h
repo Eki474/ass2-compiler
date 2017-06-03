@@ -1,8 +1,9 @@
+#include <list>
+
 #ifndef EXPRESSION_H
 #define EXPRESSION_H
 
 #include "Node.h"
-#include <list>
 #include "Statement.h"
 #include "BBlock.h"
 

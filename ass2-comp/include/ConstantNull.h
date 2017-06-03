@@ -1,14 +1,15 @@
+#include <list>
+#include <string>
+
 #ifndef CONSTANTNULL_H
 #define CONSTANTNULL_H
 
 #include "Expression.h"
 #include "Node.h"
-#include <list>
 #include "Statement.h"
 #include "LuaEmpty.h"
 #include "LuaValue.h"
 #include "BBlock.h"
-#include <string>
 
 class ConstantNull : public Expression
 {

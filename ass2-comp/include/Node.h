@@ -1,9 +1,10 @@
-#ifndef NODE_H
-#define NODE_H
 #include <list>
 #include <iostream>
 #include <sstream>
 #include <fstream>
+
+#ifndef NODE_H
+#define NODE_H
 
 class Node {
 	public:

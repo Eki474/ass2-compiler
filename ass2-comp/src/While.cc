@@ -13,8 +13,6 @@ void While::Set()
 std::string While::convert(BBlock** out)
 {
 	Set();
-    // Write three address instructions to output
-    (*out)->instructions.push_back(new ThreeAdWhile("while", ',', lhs->convert(out), "do"));
 
     //Blocks creation
     BBlock* true_out = new BBlock();

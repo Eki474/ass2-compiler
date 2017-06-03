@@ -1,3 +1,5 @@
+#include <string>
+
 #ifndef EXPLIST_H
 #define EXPLIST_H
 
@@ -5,7 +7,6 @@
 #include "Node.h"
 #include "BBlock.h"
 #include "ThreeAdExpList.h"
-#include <string>
 
 class ExpList : public Expression
 {

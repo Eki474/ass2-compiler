@@ -1,3 +1,7 @@
+#include <string>
+#include <cstring>
+#include <typeinfo>
+
 #ifndef VARIABLE_H
 #define VARIABLE_H
 
@@ -5,9 +9,6 @@
 #include "Statement.h"
 #include "Node.h"
 #include "BBlock.h"
-#include <string>
-#include <cstring>
-#include <typeinfo>
 
 class Variable : public Expression
 {

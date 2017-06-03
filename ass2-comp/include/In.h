@@ -1,11 +1,12 @@
+#include <list>
+#include <string>
+#include <iostream>
+
 #ifndef IN_H
 #define IN_H
 
 #include "Node.h"
-#include <list>
 #include "Statement.h"
-#include <string>
-#include <iostream>
 #include "ThreeAdIn.h"
 
 class In : public Statement 

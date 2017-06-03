@@ -1,8 +1,8 @@
-#ifndef THREEAD_H
-#define THREEAD_H
-
 #include <string>
 #include <iostream>
+
+#ifndef THREEAD_H
+#define THREEAD_H
 
 /************* Three Address Instructions *************/
 class ThreeAd

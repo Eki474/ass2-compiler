@@ -1,12 +1,13 @@
+#include <list>
+#include <string>
+
 #ifndef EINF_H
 #define EINF_H
 
 #include "Expression.h"
 #include "Node.h"
-#include <list>
 #include "Statement.h"
 #include "BBlock.h"
-#include <string>
 #include "ThreeAdEInf.h"
 
 class EInf : public Expression

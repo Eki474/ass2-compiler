@@ -1,7 +1,7 @@
+#include <string>
+
 #ifndef LUAVALUE_H
 #define LUAVALUE_H
-
-#include <string>
 
 class LuaValue
 {

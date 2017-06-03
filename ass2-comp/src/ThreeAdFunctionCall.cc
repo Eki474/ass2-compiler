@@ -43,7 +43,7 @@ std::string ThreeAdFunctionCall::assembly()
 				"\"lea %%rax, (%%rcx-1)\\n\\t\"\n"
 				"\"ret\\n\\t\"\n"
     			"\"movq %%rdx, %%rax\\n\\t\"\n"
-    			"\"movq %%rcx, "+rhs+"\\n\\t\"\n"
+    			"\"movq %%rcx, ("+rhs+")\\n\\t\"\n"
     			"\"movq %%rbx, $1\\n\\t\"\n"
     			"\"movq %%rax, $4\\n\\t\"\n"
     			"\"call _syscall\\n\\t\"\n";

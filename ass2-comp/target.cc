@@ -32,7 +32,7 @@ asm(
 "lea %%rax, (%%rcx-1)\n\t"
 "ret\n\t"
 "movq %%rdx, %%rax\n\t"
-"movq %%rcx, _t2\n\t"
+"movq %%rcx, (_t2)\n\t"
 "movq %%rbx, $1\n\t"
 "movq %%rax, $4\n\t"
 "call _syscall\n\t"

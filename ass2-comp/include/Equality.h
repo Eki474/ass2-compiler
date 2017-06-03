@@ -1,9 +1,10 @@
+#include <string>
+
 #ifndef EQUALITY_H
 #define EQUALITY_H
 
 #include "Expression.h"
 #include "BBlock.h"
-#include <string>
 #include "ThreeAdEquality.h"
 #include "Statement.h"
 

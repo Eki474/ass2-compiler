@@ -1,3 +1,7 @@
+#include <list>
+#include <sstream>
+#include <string>
+
 #ifndef STATEMENT_H
 #define STATEMENT_H
 
@@ -5,9 +9,6 @@
 #include "LuaEmpty.h"
 #include "LuaValue.h"
 #include "BBlock.h"
-#include <list>
-#include <sstream>
-#include <string>
 
 class Statement 
 {	

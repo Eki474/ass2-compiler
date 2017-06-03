@@ -1,12 +1,13 @@
+#include <list>
+#include <string>
+
 #ifndef EQUALS_H
 #define EQUALS_H
 
 #include "Expression.h"
 #include "Node.h"
-#include <list>
 #include "Statement.h"
 #include "BBlock.h"
-#include <string>
 #include "ThreeAdEquals.h"
 
 class Equals : public Expression

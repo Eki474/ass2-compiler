@@ -1,12 +1,13 @@
+#include <list>
+#include <string>
+
 #ifndef DIFF_H
 #define DIFF_H
 
 #include "Expression.h"
 #include "Node.h"
-#include <list>
 #include "Statement.h"
 #include "BBlock.h"
-#include <string>
 #include "ThreeAdDiff.h"
 
 class Diff : public Expression

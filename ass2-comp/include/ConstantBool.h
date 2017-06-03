@@ -1,14 +1,15 @@
+#include <list>
+#include <string>
+
 #ifndef CONSTANTBOOL_H
 #define CONSTANTBOOL_H
 
 #include "Expression.h"
 #include "Node.h"
-#include <list>
 #include "Statement.h"
 #include "LuaBool.h"
 #include "LuaValue.h"
 #include "BBlock.h"
-#include <string>
 
 class ConstantBool : public Expression
 {

@@ -1,11 +1,12 @@
+#include <list>
+#include <typeinfo>
+
 #ifndef FUNCTIONCALL_H
 #define FUNCTIONCALL_H
 
 #include "Node.h"
-#include <list>
 #include "Statement.h"
 #include "ThreeAdFunctionCall.h"
-#include <typeinfo>
 
 
 class FunctionCall : public Statement 

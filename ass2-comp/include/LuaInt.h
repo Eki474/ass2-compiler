@@ -1,8 +1,9 @@
+#include <iostream>
+
 #ifndef LUAINT_H
 #define LUAINT_H
 
 #include "LuaValue.h"
-#include <iostream>
 
 class LuaInt : public LuaValue
 {

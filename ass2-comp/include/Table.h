@@ -1,3 +1,5 @@
+#include <string>
+
 #ifndef TABLE_H
 #define TABLE_H
 
@@ -5,7 +7,6 @@
 #include "Node.h"
 #include "BBlock.h"
 #include "ThreeAdTable.h"
-#include <string>
 
 class Table : public Expression
 {

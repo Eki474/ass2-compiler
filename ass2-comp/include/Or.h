@@ -1,12 +1,13 @@
+#include <list>
+#include <string>
+
 #ifndef OR_H
 #define OR_H
 
 #include "Expression.h"
 #include "Node.h"
-#include <list>
 #include "Statement.h"
 #include "BBlock.h"
-#include <string>
 #include "ThreeAdOr.h"
 
 class Or : public Expression

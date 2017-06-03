@@ -1,13 +1,13 @@
-#ifndef BBLOCK_H
-#define BBLOCK_H
-
-#include "ThreeAd.h"
 #include <list>
 #include <string>
 #include <iostream>
 #include <sstream>
 #include <fstream>
-/*TODO: change pointers by unique_ptr (include <memory>)*/
+
+#ifndef BBLOCK_H
+#define BBLOCK_H
+
+#include "ThreeAd.h"
 
 /* Basic Blocks */
 class BBlock
@@ -15,6 +15,7 @@ class BBlock
 private:
         static int nCounter;
         static std::list<std::string> read_blocks;
+        static std::list<std::string> compiled_blocks;
 public:
         std::list<ThreeAd*> instructions;
         BBlock *tExit, *fExit;
@@ -27,6 +28,7 @@ public:
         void dumpCFG(std::ofstream& myfile);
 
         bool already_read(std::string n);
+        bool already_compiled(std::string n);
 };
 
 #endif

@@ -1,12 +1,13 @@
+#include <list>
+#include <string>
+
 #ifndef CONCAT_H
 #define CONCAT_H
 
 #include "Expression.h"
 #include "Node.h"
-#include <list>
 #include "Statement.h"
 #include "BBlock.h"
-#include <string>
 #include "ThreeAdConcat.h"
 
 class Concat : public Expression

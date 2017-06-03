@@ -1,11 +1,12 @@
+#include <list>
+#include <string>
+
 #ifndef IND_H
 #define IND_H
 
 #include "Node.h"
-#include <list>
 #include "Statement.h"
 #include "BBlock.h"
-#include <string>
 #include "ThreeAdInd.h"
 
 class Ind : public Statement

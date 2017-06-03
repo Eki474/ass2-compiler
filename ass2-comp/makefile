@@ -1,14 +1,14 @@
 CC=g++
-CFLAGS=-std=c++11 -g
+CFLAGS=--std=c++11 -g
 
-IDIR=./include
-SDIR=./src
+IDIR=include
+SDIR=src
 
 DEPS=$(IDIR)/*.h
 SRCS=$(SDIR)/*.cc
 
 comp: lex.yy.c binary.tab.o $(SRCS) $(DEPS)
-	$(CC) $(CFLAGS) -ocomp $^
+	$(CC) $(CFLAGS) -o $@ $^
 binary.tab.o: binary.tab.cc
 	$(CC) $(CFLAGS) -c binary.tab.cc
 binary.tab.cc: binary.yy 

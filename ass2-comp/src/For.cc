@@ -18,7 +18,6 @@ std::string For::convert(BBlock** out)
 	Set();
     // Write three address instructions to output
     lhs->convert(out);
-    (*out)->instructions.push_back(new ThreeAdFor("for", ',', "cond", "do"));
 
     //Blocks creation
     BBlock* true_out = new BBlock();
